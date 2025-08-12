@@ -21,9 +21,9 @@ namespace ApiProjeKampi.WebApi.Controllers
             var values = _context.Categories.ToList();
             return Ok(values);
 
-        } 
+        }
 
-
+        
         [HttpPost]
         public IActionResult CreateCategory(Category category)
         {

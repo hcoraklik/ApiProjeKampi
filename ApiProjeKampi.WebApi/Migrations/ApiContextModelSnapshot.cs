@@ -291,6 +291,31 @@ namespace ApiProjeKampi.WebApi.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("ApiProjeKampi.WebApi.Entities.SiteSetting", b =>
+                {
+                    b.Property<int>("SiteSettingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SiteSettingId"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SiteSettingId");
+
+                    b.ToTable("SiteSettings");
+                });
+
             modelBuilder.Entity("ApiProjeKampi.WebApi.Entities.Testimonial", b =>
                 {
                     b.Property<int>("TestimonialId")
@@ -318,6 +343,37 @@ namespace ApiProjeKampi.WebApi.Migrations
                     b.HasKey("TestimonialId");
 
                     b.ToTable("Testimonials");
+                });
+
+            modelBuilder.Entity("ApiProjeKampi.WebApi.Entities.YummyEvent", b =>
+                {
+                    b.Property<int>("YummyEventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YummyEventId"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("YummyEventId");
+
+                    b.ToTable("YummyEvents");
                 });
 
             modelBuilder.Entity("ApiProjeKampi.WebApi.Entities.Product", b =>
