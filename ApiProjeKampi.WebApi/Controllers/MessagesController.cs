@@ -2,6 +2,7 @@
 using ApiProjeKampi.WebApi.Dtos.MessageDtos;
 using ApiProjeKampi.WebApi.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,6 +64,12 @@ namespace ApiProjeKampi.WebApi.Controllers
             return Ok("Mesaj Güncelleme İşlemi Başarılı");
         }
 
+        [HttpGet("GetMessagesByListTrueFalse")]
+        public IActionResult MessageListByIsReadyTrue()
+        {
+            var value = _context.Messages.Where(x => x.IsRead == false).ToList();
+            return Ok(value);
+        }
 
 
 

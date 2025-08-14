@@ -2,11 +2,12 @@
 {
     public class GetByIdMessageDto
     {
-        public int FeatureId { get; set; }
-        public string Title { get; set; }
-        public string SubTitle { get; set; }
-        public string Description { get; set; }
-        public string VideoUrl { get; set; }
-        public string ImageUrl { get; set; }
+        public int MessageId { get; set; }
+        public string NameSurname { get; set; }
+        public string Email { get; set; }
+        public string Subject { get; set; }
+        public string MessageDetails { get; set; }
+        public DateTime SendDate { get; set; }
+        public bool IsRead { get; set; }
     }
 }
