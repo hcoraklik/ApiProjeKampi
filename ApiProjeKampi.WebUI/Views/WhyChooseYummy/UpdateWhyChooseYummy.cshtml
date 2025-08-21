@@ -1,9 +1,8 @@
-﻿@model UpdateFeatureDto
+﻿@model GetWhyChooseYummyByIdDto
 @{
-    ViewData["Title"] = "UpdateFeature";
+    ViewData["Title"] = "CreateWhyChooseYummy";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-
 
 <section class="section">
     <div class="section-body">
@@ -11,27 +10,21 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Öne Çıkan Alan Güncelleme Sayfası</h4>
+                        <h4>Neden Bizi Seçmelisiniz Güncelleme Sayfası</h4>
                     </div>
                     <div class="card-body">
                         <form method="post">
-                            <input type="hidden" asp-for="FeatureId" />
+                            <input type="hidden" asp-for="ServiceId"/>
                             <label>Başlık</label>
                             <input type="text" asp-for="Title" class=" form-control " />
-                            <br />
-                            <label>Alt Başlık</label>
-                            <input type="text" asp-for="SubTitle" class=" form-control " />
                             <br />
                             <label>Açıklama</label>
                             <input type="text" asp-for="Description" class=" form-control " />
                             <br />
-                            <label>GörselUrl</label>
-                            <input type="text" asp-for="ImageUrl" class=" form-control " />
+                            <label>IconURL</label>
+                            <input type="text" asp-for="IconUrl" class=" form-control " />
                             <br />
-                            <label>VideoURL (Embed Link)</label>
-                            <input type="text" asp-for="VideoUrl" class=" form-control " />
-                            <br />
-                            <button type="btn btn-success">Önce Çıkan Alanı Güncelle</button>
+                            <button class="btn btn-success">Alanı Güncelle</button>
                         </form>
 
                     </div>
@@ -40,3 +33,5 @@
         </div>
     </div>
 </section>
+
+

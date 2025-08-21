@@ -66,10 +66,10 @@ namespace ApiProjeKampi.WebUI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategorydto updateCategorydto)
+        public async Task<IActionResult> UpdateCategory(UpdateCategorydto updateCategoryDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateCategorydto);
+            var jsonData = JsonConvert.SerializeObject(updateCategoryDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
             await client.PutAsync("http://localhost:5155/api/Categories/", stringContent);
             return RedirectToAction("CategoryList");

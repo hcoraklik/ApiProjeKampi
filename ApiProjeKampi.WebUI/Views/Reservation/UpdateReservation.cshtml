@@ -1,0 +1,51 @@
+﻿@model UpdateReservationDto
+@{
+    ViewData["Title"] = "CreateReservation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="section">
+    <div class="section-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Rezervasyon Güncelleme Sayfası</h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            <input type ="hidden" asp-for="ReservationId" />
+                            <label>Misafir adı</label>
+                            <input type="text" asp-for="NameSurname" class=" form-control " />
+                            <br />
+                            <label> Misafir Email Adresi</label>
+                            <input type="text" asp-for="Email" class=" form-control " />
+                            <br />
+                            <label>Misafir Telefon Numarası</label>
+                            <input tpype="tel" asp-for="PhoneNumber" class=" form-control " />
+                            <br />
+                            <label>Rezervasyon Tarihi</label>
+                            <input tpype="date" asp-for="ReservationDate" class=" form-control " />
+                            <br />
+                            <label>Rezervasyon Saati</label>
+                            <input tpype="time" asp-for="ReservationTime" class=" form-control " />
+                            <br />
+                            <label>Kişi Sayısı</label>
+                            <input tpype="number" asp-for="CountofPeople" class=" form-control " />
+                            <br />
+                            <label>Misafir Mesaj</label>
+                            <input tpype="text" asp-for="Message" class=" form-control " />
+                            <br />
+                            <label>Rezervasyon Durumu</label>
+                            <input tpype="text" asp-for="ReservationStatus" readonly class=" form-control " />
+                            <br />
+                            <button class="btn btn-primary">Rezervasyonu Güncelle</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
