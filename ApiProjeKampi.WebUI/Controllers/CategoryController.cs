@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ApiProjeKampi.WebUI.Controllers
 {
+    [Route("Admin/[controller]/[action]")]
     public class CategoryController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

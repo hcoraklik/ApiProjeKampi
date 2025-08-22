@@ -23,6 +23,7 @@ namespace ApiProjeKampi.WebApi.Context
         public DbSet<SiteSetting> SiteSettings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<About> Abouts { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 
