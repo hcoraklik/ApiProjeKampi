@@ -4,6 +4,7 @@ using ApiProjeKampi.WebApi.Entities;
 using ApiProjeKampi.WebApi.ValidationRules;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,9 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
+
     public class ProductsController : ControllerBase
     {
         private readonly IValidator<Product> _validator;
@@ -29,6 +33,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
 
         public IActionResult ProductList()
         {

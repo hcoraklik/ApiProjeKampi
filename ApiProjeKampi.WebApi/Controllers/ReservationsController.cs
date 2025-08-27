@@ -2,6 +2,7 @@
 using ApiProjeKampi.WebApi.Dtos.ReservationDtos;
 using ApiProjeKampi.WebApi.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,9 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
+
     public class ReservationsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -21,6 +25,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ReservationList()
         {
             var values = _context.Reservations.ToList();

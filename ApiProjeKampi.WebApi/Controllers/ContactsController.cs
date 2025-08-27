@@ -1,6 +1,7 @@
 ﻿using ApiProjeKampi.WebApi.Context;
 using ApiProjeKampi.WebApi.Dtos.ContactDtos;
 using ApiProjeKampi.WebApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,9 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
+
     public class ContactsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -17,6 +21,7 @@ namespace ApiProjeKampi.WebApi.Controllers
             _context = context;
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ContactList()
         {
             var values = _context.Contacts.ToList();

@@ -16,6 +16,7 @@ namespace ApiProjeKampi.WebApi.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
+
     public class AuthController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -70,8 +71,8 @@ namespace ApiProjeKampi.WebApi.Controllers
             // 5) JSON olarak token'ı ve bitiş saatini döndür
             return Ok(new
             {
-                access_token = tokenString,
-                expires_at_utc = expires
+                AccessToken = tokenString,
+               
             });
         }
         [HttpGet]

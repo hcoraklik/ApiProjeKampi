@@ -2,6 +2,7 @@
 using ApiProjeKampi.WebApi.Dtos.CategoryDtos;
 using ApiProjeKampi.WebApi.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,9 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
+
     public class CategoriesController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -21,6 +25,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult CategoryList()
         {
             var values = _context.Categories.ToList();
@@ -30,6 +35,7 @@ namespace ApiProjeKampi.WebApi.Controllers
 
         
         [HttpPost]
+        [Authorize]
         public IActionResult CreateCategory(CreateCategoryDto createCategoryDto)
         {
             //_context.Categories.Add(category);

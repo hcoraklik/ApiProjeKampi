@@ -2,6 +2,7 @@
 using ApiProjeKampi.WebApi.Dtos.AboutDtos;
 using ApiProjeKampi.WebApi.Entities;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AboutsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -21,6 +23,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult AboutList()
         {
             var values = _context.Abouts.ToList();

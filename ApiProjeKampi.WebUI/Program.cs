@@ -1,8 +1,19 @@
+using ApiProjeKampi.WebUI.Handler;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
 
 builder.Services.AddHttpClient();
+builder.Services.AddTransient<AuthTokenHandler>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient("ApiHttpClient", client =>
+{
+//     API'nin temel adresini burada merkezi olarak belirleyebilirsin.
+    client.BaseAddress = new Uri("http://localhost:5155/api/");
+})
+.AddHttpMessageHandler<AuthTokenHandler>();
+
 
 builder.Services.AddControllersWithViews();
 

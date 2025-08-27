@@ -18,8 +18,8 @@ namespace ApiProjeKampi.WebUI.Controllers
 
         public async Task<IActionResult> ProductList()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Products/ProductListWithCategory");
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Products/ProductListWithCategory");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var JsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -32,8 +32,8 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateProduct()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Categories");
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Categories");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var categories = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
@@ -62,10 +62,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(createProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5155/api/Products/CreateProductWithCategory", stringContent);
+            var responseMessage = await client.PostAsync("Products/CreateProductWithCategory", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ProductList");
@@ -76,15 +76,15 @@ namespace ApiProjeKampi.WebUI.Controllers
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("http://localhost:5155/api/Products?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            await client.DeleteAsync("Products?id=" + id);
             return RedirectToAction("ProductList");
         }
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Products/GetProducts?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Products/GetProducts?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var value = JsonConvert.DeserializeObject<UpdateProductDto>(jsonData);
             return View(value);
@@ -94,10 +94,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductdto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(updateProductdto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            await client.PutAsync("http://localhost:5155/api/Products/", stringContent);
+            await client.PutAsync("Products/", stringContent);
             return RedirectToAction("ProductList");
         }
     }

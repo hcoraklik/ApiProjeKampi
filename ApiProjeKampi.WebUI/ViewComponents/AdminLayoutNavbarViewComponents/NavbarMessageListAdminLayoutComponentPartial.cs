@@ -18,8 +18,8 @@ namespace ApiProjeKampi.WebUI.ViewComponents.AdminLayoutNavbarViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Messages/GetMessagesByListTrueFalse");
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Messages/GetMessagesByListTrueFalse");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsondata = await responseMessage.Content.ReadAsStringAsync();

@@ -16,8 +16,8 @@ namespace ApiProjeKampi.WebUI.Controllers
 
         public async Task<IActionResult> AboutList()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Abouts");
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Abouts");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var JsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -36,10 +36,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAbout(CreateAboutDto createAboutDto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(createAboutDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5155/api/Abouts", stringContent);
+            var responseMessage = await client.PostAsync("Abouts", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("AboutList");
@@ -50,15 +50,15 @@ namespace ApiProjeKampi.WebUI.Controllers
 
         public async Task<IActionResult> DeleteAbout(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("http://localhost:5155/api/Abouts?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            await client.DeleteAsync("Abouts?id=" + id);
             return RedirectToAction("AboutList");
         }
         [HttpGet]
         public async Task<IActionResult> UpdateAbout(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Abouts/GetAbout?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Abouts/GetAbout?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var value = JsonConvert.DeserializeObject<UpdateAboutDto>(jsonData);
             return View(value);
@@ -68,10 +68,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateAbout(UpdateAboutDto updateAboutdto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(updateAboutdto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            await client.PutAsync("http://localhost:5155/api/Abouts/", stringContent);
+            await client.PutAsync("Abouts/", stringContent);
             return RedirectToAction("AboutList");
         }
      

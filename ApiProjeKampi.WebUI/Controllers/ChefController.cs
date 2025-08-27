@@ -15,8 +15,8 @@ namespace ApiProjeKampi.WebUI.Controllers
         }
         public async Task<IActionResult> ChefList()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Chefs");
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Chefs");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var JsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -35,10 +35,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateChef(CreateChefDto createChefDto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(createChefDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5155/api/Chefs", stringContent);
+            var responseMessage = await client.PostAsync("Chefs", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("ChefList");
@@ -49,15 +49,15 @@ namespace ApiProjeKampi.WebUI.Controllers
 
         public async Task<IActionResult> DeleteChef(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            await client.DeleteAsync("http://localhost:5155/api/Chefs?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            await client.DeleteAsync("Chefs?id=" + id);
             return RedirectToAction("ChefList");
         }
         [HttpGet]
         public async Task<IActionResult> UpdateChef(int id)
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5155/api/Chefs/GetChef?id=" + id);
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
+            var responseMessage = await client.GetAsync("Chefs/GetChef?id=" + id);
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var value = JsonConvert.DeserializeObject<UpdateChefDto>(jsonData);
             return View(value);
@@ -67,10 +67,10 @@ namespace ApiProjeKampi.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateChef(UpdateChefDto updateChefdto)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("ApiHttpClient");
             var jsonData = JsonConvert.SerializeObject(updateChefdto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            await client.PutAsync("http://localhost:5155/api/Chefs/", stringContent);
+            await client.PutAsync("Chefs/", stringContent);
             return RedirectToAction("ChefList");
         }
     }

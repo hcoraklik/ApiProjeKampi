@@ -1,5 +1,6 @@
 ﻿using ApiProjeKampi.WebApi.Context;
 using ApiProjeKampi.WebApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,8 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
     public class TestimonialsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -16,6 +19,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult TestimonialList()
         {
             var values = _context.Testimonials.ToList();

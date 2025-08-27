@@ -1,5 +1,6 @@
 ﻿using ApiProjeKampi.WebApi.Context;
 using ApiProjeKampi.WebApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,9 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
+
     public class ChefsController : ControllerBase
     {
         private readonly ApiContext _context;
@@ -18,6 +22,7 @@ namespace ApiProjeKampi.WebApi.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ChefList()
         {
             var values = _context.Chefs.ToList();

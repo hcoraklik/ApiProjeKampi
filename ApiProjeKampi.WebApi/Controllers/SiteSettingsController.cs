@@ -2,6 +2,7 @@
 using ApiProjeKampi.WebApi.Dtos.ContactDtos;
 using ApiProjeKampi.WebApi.Dtos.SiteSettingDtos;
 using ApiProjeKampi.WebApi.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,8 @@ namespace ApiProjeKampi.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
+
 
     public class SiteSettingsController : ControllerBase
     {
@@ -19,6 +22,7 @@ namespace ApiProjeKampi.WebApi.Controllers
             _context = context;
         }
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult SiteSettingList()
         {
             var values = _context.SiteSettings.FirstOrDefault();
